@@ -22010,6 +22010,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
@@ -22023,15 +22024,13 @@ class MainView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-    // axios.get('https://getmyflix.herokuapp.com/movies')
-    //   .then(response => {
-    //     this.setState({
-    //       movies: response.data
-    //     });
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+        _axiosDefault.default.get('https://getmyflix.herokuapp.com/movies').then((response)=>{
+            this.setState({
+                movies: response.data
+            });
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
     setSelectedMovie(movie) {
         this.setState({
@@ -22044,13 +22043,13 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , selectedMovie  } = this.state;
+        const { movies , selectedMovie , user  } = this.state;
         if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
-            onLoggedIn: (user)=>this.onLoggedIn(user)
+            onLoggedIn: (user1)=>this.onLoggedIn(user1)
             ,
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 46
+                lineNumber: 47
             },
             __self: this
         }));
@@ -22058,7 +22057,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 48
+                lineNumber: 49
             },
             __self: this
         }));
@@ -22066,7 +22065,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 50
+                lineNumber: 51
             },
             __self: this
         }, selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -22076,7 +22075,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 52
+                lineNumber: 53
             },
             __self: this
         }) : movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -22087,7 +22086,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                    lineNumber: 56
+                    lineNumber: 57
                 },
                 __self: this
             })
@@ -22100,7 +22099,7 @@ class MainView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"7IoRK","../../../../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"3QRYi","../movie-card/movie-card":"5uuVD","../movie-view/movie-view":"1qqny","axios":"7rA65","../login-view/login-view":"qJoBV"}],"5uuVD":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"7IoRK","../../../../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"3QRYi","../movie-card/movie-card":"5uuVD","../movie-view/movie-view":"1qqny","axios":"7rA65","../login-view/login-view":"qJoBV","../registration-view/registration-view":"6jrNW"}],"5uuVD":[function(require,module,exports) {
 var helpers = require("../../../../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -22130,7 +22129,7 @@ class MovieCard extends _reactDefault.default.Component {
         }, movie.Title));
     }
 }
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
         Title: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired,
@@ -24305,22 +24304,44 @@ function LoginView(props) {
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const handleSubmit = ()=>{
-        e.preventDefault();
+        // e.preventDefault();
         console.log(username, password);
         // send request to server for auth
-        // then call props.onLoggedIn(username)
         props.onLoggedIn(username);
     };
-    return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
+    onRegister = ()=>{
+        this.setState({
+            register
+        });
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         __source: {
             fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
-            lineNumber: 16
+            lineNumber: 21
         },
         __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+    }, /*#__PURE__*/ _reactDefault.default.createElement("form", {
         __source: {
             fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
-            lineNumber: 17
+            lineNumber: 22
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 23
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 24
+        },
+        __self: this
+    }, "Login!"), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 25
         },
         __self: this
     }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -24330,23 +24351,202 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
-            lineNumber: 19
+            lineNumber: 27
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 31
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 32
+        },
+        __self: this
+    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: password,
+        onChange: (e)=>setPassword(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 34
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("button", {
         type: "submit",
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
-            lineNumber: 22
+            lineNumber: 38
         },
         __self: this
-    }, "Submit")));
+    }, "Submit")), /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 40
+        },
+        __self: this
+    }, "Don't have an account yet?"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        type: "submit",
+        onClick: onRegister,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 41
+        },
+        __self: this
+    }, "Register!")));
 }
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"7IoRK","../../../../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"3QRYi"}],"6jrNW":[function(require,module,exports) {
+var helpers = require("../../../../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+function RegistrationView(props) {
+    _s();
+    this.state = {
+        register
+    };
+    const [username, setUsername] = _react.useState('');
+    const [email, setEmail] = _react.useState('');
+    const [birthday, setBirthday] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
+    const handleSubmit = ()=>{
+        // e.preventDefault();
+        console.log(username, email, birthday, password);
+        // send request to server for auth
+        props.onRegister(username);
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 20
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 21
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 22
+        },
+        __self: this
+    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: username,
+        onChange: (e)=>setUsername(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 24
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 28
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 29
+        },
+        __self: this
+    }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: email,
+        onChange: (e)=>setEmail(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 31
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 35
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 36
+        },
+        __self: this
+    }, "Birthday:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: birthday,
+        onChange: (e)=>setBirthday(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 38
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 42
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 43
+        },
+        __self: this
+    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: password,
+        onChange: (e)=>setPassword(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 45
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 49
+        },
+        __self: this
+    }, "Register!")));
+}
+_s(RegistrationView, "rFWXm2sn8s1KKND9p9MYGC9/iUE=");
+_c = RegistrationView;
+var _c;
+$RefreshReg$(_c, "RegistrationView");
 
   helpers.postlude(module);
 } finally {
