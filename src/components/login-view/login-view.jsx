@@ -5,23 +5,43 @@ export function LoginView(props) {
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(username, password);
     // send request to server for auth
-    // then call props.onLoggedIn(username)
     props.onLoggedIn(username);
   };
 
+  onRegister = () => {
+    this.setState({
+      register
+    })
+  };
+
   return (
-    <form>
-      <label>
-        Username:
-        <input type='text' value={username} onChange={
-          e => setUsername(e.target.value)} />
-      </label>
-      <button type='submit' onClick={handleSubmit}>Submit</button>
-    </form>
+    <div>
+      <form>
+        <div>
+          <h1>Login!</h1>
+          <label>
+            Username:
+            <input type='text' value={username} onChange={
+              e => setUsername(e.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password:
+            <input type='text' value={password} onChange={
+              e => setPassword(e.target.value)} />
+          </label>
+        </div>
+        <button type='submit' onClick={handleSubmit}>Submit</button>
+      </form>
+      <h2>Don't have an account yet?</h2>
+      <button type='submit' onClick={onRegister}>Register!</button>
+    </div>
   );
+
 }
 
 
