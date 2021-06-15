@@ -13,7 +13,7 @@ export function LoginView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log('register');
+    console.log('registered');
     // send request to server for auth
     props.onRegister();
   };

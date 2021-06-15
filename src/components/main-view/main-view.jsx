@@ -33,6 +33,7 @@ export class MainView extends React.Component {
   onRegister() {
     this.setState({
       registered: false
+      // registered
     });
   }
 
@@ -52,7 +53,7 @@ export class MainView extends React.Component {
     const { movies, selectedMovie, user, registered } = this.state;
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />; //login view if user isn't logged in
-    if (!registered) return <RegistrationView onRegister={(registered) => this.onRegister(registered)} />; //registration view if user isn't registered
+    if (!user && !registered) return <RegistrationView onRegister={(registered) => this.onRegister(registered)} />; //registration view if user isn't registered
 
     if (movies.length === 0) return <div className='main-view' />;
     return (
