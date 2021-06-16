@@ -15,7 +15,7 @@ export function LoginView(props) {
     e.preventDefault();
     console.log('registered');
     // send request to server for auth
-    props.onRegister();
+    props.onRegister(false);
   };
 
   return (
