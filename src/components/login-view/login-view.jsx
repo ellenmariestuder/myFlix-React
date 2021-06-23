@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import './login-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -19,28 +25,24 @@ export function LoginView(props) {
   };
 
   return (
-    <div>
-      <form>
-        <div>
-          <h1>Login!</h1>
-          <label>
-            Username:
-            <input type='text' value={username} onChange={
-              e => setUsername(e.target.value)} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
-            <input type='text' value={password} onChange={
-              e => setPassword(e.target.value)} />
-          </label>
-        </div>
-        <button type='submit' onClick={handleSubmit}>Submit</button>
-      </form>
-      <h2>Don't have an account yet?</h2>
-      <button type='submit' onClick={handleRegister}>Register!</button>
-    </div>
+    <Row>
+      <Col md={6}>
+        <Form>
+          <h1>myFlix</h1>
+          <h2>Login</h2>
+          <Form.Group controlId='formUsername'>
+            <Form.Label>Username:</Form.Label>
+            <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId='formPassword'>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
+          <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
+          <h4>Don't have an account yet?</h4>
+          <Button variant='primary' type='submit' onClick={handleRegister}>Register!</Button>
+        </Form>
+      </Col>
+    </Row>
   );
 }
-

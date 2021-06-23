@@ -2,11 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+
+import './main-view.scss'
 
 export class MainView extends React.Component {
 
@@ -53,22 +60,52 @@ export class MainView extends React.Component {
   render() {
     const { movies, selectedMovie, user, registered } = this.state;
 
-    if (!user && !registered) return <RegistrationView onRegister={(registered) => this.onRegister(registered)} />; //registration view if user isn't registered
+    if (!user && !registered) return <RegistrationView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />; //registration view if user isn't registered
     if (!user) return <LoginView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />; //login view if user isn't logged in
 
     if (movies.length === 0) return <div className='main-view' />;
     return (
-      <div className="main-view">
+      <Row className="main-view justify-content-md-center">
+        <Col md={12}>
+          <Navbar>
+            <Navbar.Brand href="#home">myFlix</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#link">Profile</Nav.Link>
+                <NavDropdown title="Settings" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Support</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Log Out</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+              <Form inline>
+                <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="secondary">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Navbar>
+        </Col>
+
         {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
-            this.setSelectedMovie(newSelectedMovie);
-          }} />
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => {
-              this.setSelectedMovie(movie);
-            }} />
-          ))}
-      </div>
+          ? (
+            <Col md={8}>
+              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
+                this.setSelectedMovie(newSelectedMovie);
+              }} />
+            </Col>
+          )
+          :
+          movies.map(movie => (
+            <Col md={3}>
+              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => {
+                this.setSelectedMovie(newSelectedMovie);
+              }} />
+            </Col>
+          ))
+        }
+      </Row>
     );
   }
 }
