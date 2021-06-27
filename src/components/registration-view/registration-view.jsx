@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { onLoggedIn } from '../main-view/main-view';
 import { onRegister } from '../main-view/main-view';
 
+import './registration-view.scss';
+
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +26,7 @@ export function RegistrationView(props) {
     <Row>
       <Col md={6}>
         <Form>
-          <h1>myFlix</h1>
+          <h1 className='header'>myFlix</h1>
           <h2>Create an Account</h2>
           <Form.Group controlId='formUsername'>
             <Form.Label>Username:</Form.Label>
@@ -42,7 +44,8 @@ export function RegistrationView(props) {
             <Form.Label>Password:</Form.Label>
             <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
           </Form.Group>
-          <Button variant='primary' type='submit' onClick={handleSubmit}>Register!</Button>
+          <Button variant='light' type='submit' onClick={handleSubmit}
+            style={{ color: 'white', background: '#9ba9ff', outlineColor: 'white' }}>Register!</Button>
           {/* <Button variant='primary' type='submit' onClick={onLoggedIn}>Register!</Button> */}
         </Form>
       </Col>

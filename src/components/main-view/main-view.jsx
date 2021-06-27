@@ -65,47 +65,49 @@ export class MainView extends React.Component {
 
     if (movies.length === 0) return <div className='main-view' />;
     return (
-      <Row className="main-view justify-content-md-center">
-        <Col md={12}>
+      <Row className='main-view justify-content-md-center'>
+        <Col className='headerCol' md={12}>
           <Navbar>
-            <Navbar.Brand href="#home">myFlix</Navbar.Brand>
+            <Navbar.Brand onClick={() => { this.setSelectedMovie(null) }}
+              style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link onClick={() => { this.setSelectedMovie(null) }}>Home</Nav.Link>
                 <Nav.Link href="#link">Profile</Nav.Link>
                 <NavDropdown title="Settings" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Support</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Log Out</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => { this.onLoggedIn(null) }}>Log Out</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               <Form inline>
                 <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="secondary">Search</Button>
+                <Button variant="light" style={{ color: 'white', backgroundColor: '#4d65ff' }}>Search</Button>
               </Form>
             </Navbar.Collapse>
           </Navbar>
         </Col>
 
-        {selectedMovie
-          ? (
-            <Col md={8}>
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
-                this.setSelectedMovie(newSelectedMovie);
-              }} />
-            </Col>
-          )
-          :
-          movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => {
-                this.setSelectedMovie(newSelectedMovie);
-              }} />
-            </Col>
-          ))
+        {
+          selectedMovie
+            ? (
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => {
+                  this.setSelectedMovie(newSelectedMovie);
+                }} />
+              </Col>
+            )
+            :
+            movies.map(movie => (
+              <Col md={4}>
+                <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => {
+                  this.setSelectedMovie(newSelectedMovie);
+                }} />
+              </Col>
+            ))
         }
-      </Row>
+      </Row >
     );
   }
 }

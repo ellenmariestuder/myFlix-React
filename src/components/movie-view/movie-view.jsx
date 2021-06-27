@@ -3,29 +3,30 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import './movie-view.scss';
+
 export class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
 
     return (
-      <Row className='movie-view'>
-        <Col>
-          <div className='movie-poster'>
-            <img src={movie.ImagePath} />
-          </div>
+      <Row className='movie-view justify-content-md-center'>
+        <Col md='auto' className='movie-poster'>
+          <img src={movie.ImagePath} style={{ height: '25em' }} />
         </Col>
-
-        <Col>
+        <Col md='auto'>
           <div className='movie-title'>
-            {/* <span className='label'>Title: </span> */}
             <span className='value'>{movie.Title}</span>
           </div>
+          {/* <div className='movie-genre'>
+            <span className='value'>{movie.Genre.Name}</span>
+          </div> */}
           <div className='movie-description'>
-            {/* <span className='label'>Description: </span> */}
             <span className='value'>{movie.Description}</span>
           </div>
+          <Button className='back-button' onClick={() => { onBackClick(null); }} variant='light'
+            style={{ color: 'white', background: '#9ba9ff' }}>Back</Button>
         </Col>
-        <Button onClick={() => { onBackClick(null); }} variant='primary'>Back</Button>
       </Row>
     );
   }

@@ -1,5 +1,9 @@
-$myColor: red;
+$myColor: #9ba9ff;
 
-h1 {
+.header {
   color: $myColor;
+}
+
+.registerTitle {
+  margin-top: 2em;
 }
