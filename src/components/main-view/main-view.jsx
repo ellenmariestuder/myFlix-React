@@ -16,7 +16,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
-// import { UserView } from '../profile-view/profile-view';
+import { UserView } from '../profile-view/profile-view';
 
 import './main-view.scss'
 
@@ -27,18 +27,23 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       // selectedMovie: null,
+      token: null,
       user: null,
+      userData: null,
       registered: true
     };
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
+    let userToken = localStorage.getItem('user');
     if (accessToken !== null) {
       this.setState({
-        user: localStorage.getItem('user')
+        user: localStorage.getItem('user'),
+        token: localStorage.getItem('token')
       });
       this.getMovies(accessToken);
+      this.getUser(accessToken, userToken);
     }
   }
 
@@ -86,8 +91,29 @@ export class MainView extends React.Component {
       });
   }
 
+  getUser(token, user) {
+    axios.get(`https://getmyflix.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      // .then(user => {
+      //   setUser({
+      //     data: user.data,
+      //     token: token
+      //   }, 'refresh');
+      // })
+      .then(response => {
+        this.setState({
+          userData: response.data
+        });
+        console.log(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
-    const { movies, user, registered } = this.state;
+    const { movies, user, registered, userData, token } = this.state;
 
     if (!user && !registered) return <Row>
       <Col>
@@ -108,22 +134,21 @@ export class MainView extends React.Component {
 
           <Col className='headerCol' md={12}>
             <Navbar>
-              <Navbar.Brand onClick={() => { this.setSelectedMovie(null) }}
-                style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                  <Nav.Link onClick={() => { this.setSelectedMovie(null) }}>Home</Nav.Link>
-                  <Nav.Link href="#link">Profile</Nav.Link>
-                  <NavDropdown title="Settings" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Support</NavDropdown.Item>
+              <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='mr-auto'>
+                  <Nav.Link href='/'>Home</Nav.Link>
+                  <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                  <NavDropdown title='Settings' id='basic-nav-dropdown'>
+                    <NavDropdown.Item href='#action/3.1'>Account</NavDropdown.Item>
+                    <NavDropdown.Item href='#action/3.2'>Support</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
                 <Form inline>
-                  <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                  <Button variant="light" style={{ color: 'white', backgroundColor: '#4d65ff' }}>Search</Button>
+                  <Form.Control type='text' placeholder='Search' className='mr-sm-2' />
+                  <Button variant='light' style={{ color: 'white', backgroundColor: '#4d65ff' }}>Search</Button>
                 </Form>
               </Navbar.Collapse>
             </Navbar>
@@ -157,12 +182,19 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
-          {/* <Route path='/users/:username' render={() => {
-            if (movies.length === 0) return <div className='main-view' />;
+          {/* <Route path='/users' render={({ history }) => { */}
+          <Route path={`/users/${user}`} render={({ history }) => {
+            // if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
-              <UserView user={users.find(m => m.User.Username === match.params.name).User} />
+              <UserView
+                user={user} history={history} userData={userData} token={token}
+                // token={localStorage.getItem('token')}
+                // onLoggedIn={user => this.onLoggedIn(user)}
+                // movies={movies} user={user}
+                onBackClick={() => history.goBack()} />
             </Col>
-          }} /> */}
+          }} />
+
         </Row>
       </Router>
     );
