@@ -13,10 +13,17 @@ export class GenreView extends React.Component {
       <Row className='genre-view justify-content-md-center'>
         <Col md='auto'>
           <div className='genre-name'>
-            <span className='value'>{genre.Name}</span>
+            <span className='title'>{genre.Name}</span>
+            <div className='value'>{genre.Description}</div>
           </div>
-          <div className='genre-description'>
-            <span className='value'>{genre.Description}</span>
+          <div className='genre-movies'>
+            <span className='title'>{genre.Name} Movies:</span>
+            <div className='value'>
+              {genre.Movies
+                .map(t => <div>{t}</div>)
+                // .reduce((prev, curr) => [prev, ', ', curr])
+              }
+            </div>
           </div>
           <Button className='back-button' onClick={() => { onBackClick(null); }} variant='light'
             style={{ color: 'white', background: '#9ba9ff' }}>Back</Button>

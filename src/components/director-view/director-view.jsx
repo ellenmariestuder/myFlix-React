@@ -13,10 +13,17 @@ export class DirectorView extends React.Component {
       <Row className='director-view justify-content-md-center'>
         <Col md='auto'>
           <div className='director-name'>
-            <span className='value'>{director.Name}</span>
+            <span className='title'>{director.Name}</span>
+            <div className='value'>{director.Bio}</div>
           </div>
-          <div className='director-bio'>
-            <span className='value'>{director.Bio}</span>
+          <div className='director-movies'>
+            <span className='title'>{director.Name} Movies:</span>
+            <div className='value'>
+              {director.Movies
+                .map(t => <div>{t}</div>)
+                // .reduce((prev, curr) => [prev, ', ', curr])
+              }
+            </div>
           </div>
           <Button className='back-button' onClick={() => { onBackClick(null); }} variant='light'
             style={{ color: 'white', background: '#9ba9ff' }}>Back</Button>
