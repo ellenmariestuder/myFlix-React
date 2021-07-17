@@ -33,4 +33,52 @@
 .headerCol {
   margin-bottom: 2em;
 }
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.value {
+  padding-bottom: 5%;
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.value {
+  padding-bottom: 5%;
+}
+.section-header {
+  font-size: 20px;
+  padding-bottom: 3%;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.user-section {
+  padding-bottom: 10%;
+}
+
+.update-button {
+  font-size: 13px;
+  display: flex;
+  border: #4d65ff;
+}
+
+.user-username, .user-email, .user-password, .user-birthday {
+  padding-bottom: 7%;
+}
+
+.remove-movie {
+  padding-top: 50px;
+}
+
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}
 /*# sourceMappingURL=index.79256842.css.map */

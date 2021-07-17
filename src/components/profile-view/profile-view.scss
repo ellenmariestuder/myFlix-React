@@ -1,0 +1,35 @@
+$myColor: #9ba9ff;
+$mySecondaryColor: #4d65ff; 
+
+.section-header {
+  font-size: 20px;
+  padding-bottom: 3%;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.user-section {
+  padding-bottom: 10%;
+}
+
+.update-button {
+  font-size: 13px;
+  display: flex;
+  border: $mySecondaryColor;
+}
+
+.user-username, .user-email, .user-password, .user-birthday {
+  padding-bottom: 7%;
+}
+
+.remove-movie {
+  padding-top: 50px;
+}
+
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}

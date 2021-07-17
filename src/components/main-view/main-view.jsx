@@ -95,12 +95,6 @@ export class MainView extends React.Component {
     axios.get(`https://getmyflix.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      // .then(user => {
-      //   setUser({
-      //     data: user.data,
-      //     token: token
-      //   }, 'refresh');
-      // })
       .then(response => {
         this.setState({
           userData: response.data
@@ -141,8 +135,8 @@ export class MainView extends React.Component {
                   <Nav.Link href='/'>Home</Nav.Link>
                   <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
                   <NavDropdown title='Settings' id='basic-nav-dropdown'>
-                    <NavDropdown.Item href='#action/3.1'>Account</NavDropdown.Item>
-                    <NavDropdown.Item href='#action/3.2'>Support</NavDropdown.Item>
+                    {/* <NavDropdown.Item href={`/users/${user}`}>Account</NavDropdown.Item> */}
+                    <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -182,15 +176,12 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
-          {/* <Route path='/users' render={({ history }) => { */}
           <Route path={`/users/${user}`} render={({ history }) => {
             // if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
               <UserView
-                user={user} history={history} userData={userData} token={token}
-                // token={localStorage.getItem('token')}
-                // onLoggedIn={user => this.onLoggedIn(user)}
-                // movies={movies} user={user}
+                // user={user} history={history} userData={userData} token={token}
+                user={user} userData={userData} token={token}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
