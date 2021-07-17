@@ -30684,7 +30684,7 @@ function RegistrationView(props) {
     const [password, setPassword] = _react.useState('');
     const handleSubmit = (e)=>{
         e.preventDefault();
-        _axiosDefault.default.post('YOUR_API_URL/users', {
+        _axiosDefault.default.post('https://getmyflix.herokuapp.com/users', {
             Username: username,
             Password: password,
             Email: email,
