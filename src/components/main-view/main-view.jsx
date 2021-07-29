@@ -36,16 +36,13 @@ export class MainView extends React.Component {
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
-    // let userToken = localStorage.getItem('user');
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user'),
-        // token: localStorage.getItem('token')
       });
       console.log('component did mount');
       this.getMovies(accessToken);
       this.getAcc(accessToken);
-      // this.getUser(accessToken, userToken);
     }
   }
 
@@ -93,28 +90,10 @@ export class MainView extends React.Component {
       });
   }
 
-  // getUser(token, user) {
-  //   axios.get(`https://getmyflix.herokuapp.com/users/${user}`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(response => {
-  //       this.setState({
-  //         userData: response.data
-  //       });
-  //       console.log(response.data)
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
   getAcc(token, user) {
     axios.get(`https://getmyflix.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      // .then(response => {
-      //   this.props.setUser(response.data);
-      // })
       .then(response => {
         this.setState({
           userData: response.data
@@ -128,10 +107,6 @@ export class MainView extends React.Component {
   }
 
   render() {
-    // const { movies, user, registered, userData, token } = this.state;
-    // const { movies } = this.props;
-    // const { user, registered } = this.state;
-    // const { movies, user, registered } = this.state;
     const { movies, user, userData, registered } = this.state;
 
     if (!user && !registered) return <Row>
@@ -201,14 +176,6 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
-          {/* <Route path={`/users/${user}`} render={({ history }) => {
-            // if (movies.length === 0) return <div className='main-view' />;
-            return <Col md={8}>
-            <UserView
-            user={user} userData={userData} token={token}
-            onBackClick={() => history.goBack()} />
-            </Col>
-          }} /> */}
           <Route path='/users/:Username' render={({ history }) => {
             // if (movies.length === 0) return <div className='main-view' />;
             return (
