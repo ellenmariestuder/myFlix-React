@@ -110,9 +110,14 @@ export class UserView extends React.Component {
   handleRemove() {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    axios.delete(`https://getmyflix.herokuapp.com/users/${user}/Movies/${FavoriteMovies._id}`, {
+    axios.delete(`https://getmyflix.herokuapp.com/users/${user}/Movies/${user.FavoriteMovies._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
+      // axios.post(`https://getmyflix.herokuapp.com/users/${user}/Movies/` +
+      //   movie._id, {},
+      //   {
+      //     headers: { Authorization: `Bearer ${token}` }
+      //   })
       .then(() => {
         alert('Movie was removed');
         this.componentDidMount();
@@ -211,8 +216,8 @@ export class UserView extends React.Component {
               <div className='value'>
                 {this.state.FavoriteMovies
                   // .map(t => <div>{t}</div>)
-                  .map(t => <div>{t} {" "}
-                    <Button variant='outline-danger' onClick={() => this.handleRemove(t)} >x</Button>
+                  .map(movie => <div>{movie} {" "}
+                    <Button variant='outline-danger' onClick={() => this.handleRemove()} >x</Button>
                   </div>)
                 }
               </div>
