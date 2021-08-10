@@ -60,7 +60,7 @@
 }
 
 .user-section {
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 }
 
 .update-button {
@@ -70,7 +70,11 @@
 }
 
 .user-username, .user-email, .user-password, .user-birthday {
-  padding-bottom: 7%;
+  padding-bottom: 1em;
+}
+
+.drop-down {
+  margin-bottom: 120px;
 }
 
 .remove-movie {

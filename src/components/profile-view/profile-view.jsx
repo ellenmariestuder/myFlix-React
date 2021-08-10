@@ -1,24 +1,26 @@
 import axios from 'axios';
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
-import UnopDropdown from 'unop-react-dropdown';
+import { Row, Col, Button, Form } from 'react-bootstrap';
+import Modal from 'react-modal';
+// import UnopDropdown from 'unop-react-dropdown';
 
 import './profile-view.scss';
 
 import { Link } from "react-router-dom";
 
 export class UserView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       // username: null,
       Username: null,
       Password: null,
       Email: null,
       Birthday: null,
-      FavoriteMovies: []
+      FavoriteMovies: [],
       // validated: null
+      showModal: null
     }
   }
 
@@ -53,7 +55,8 @@ export class UserView extends React.Component {
     })
   }
 
-  handleUpdate(e) {
+  // handleUpdate(e) {
+  handleSubmit(e) {
     // e.preventDefault();
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
@@ -128,15 +131,62 @@ export class UserView extends React.Component {
     // .then(() => window.location.reload());
   }
 
+  renderModal() {
+    // console.log("the link " + this.props.url + " was clicked.")
+    console.log("the link was clicked.")
 
+    return (
+      <div className="modal-show">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Update User Info</h5>
+
+              <button type="button" className="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <Form>
+                <Form.Group controlId='formUsername'>
+                  <Form.Label>New Username:</Form.Label>
+                  <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId='formEmail'>
+                  <Form.Label>New Email:</Form.Label>
+                  <Form.Control type='email' onChange={e => setEmail(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId='formBirthday'>
+                  <Form.Label>New Birthday:</Form.Label>
+                  <Form.Control type='date' onChange={e => setBirthday(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId='formPassword'>
+                  <Form.Label>New Password:</Form.Label>
+                  <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
+                </Form.Group>
+                {/* <Button variant='light' type='submit' onClick={handleSubmit} */}
+                <Button variant='light' type='submit'
+                  style={{ color: 'white', background: '#9ba9ff', outlineColor: 'white' }}>Update</Button>
+                {/* <Button variant='primary' type='submit' onClick={onLoggedIn}>Register!</Button> */}
+              </Form>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-
+                dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Save
+                changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   render() {
     // const { movies, FavoriteMovies } = this.props;
     const { movies } = this.props;
-    const favoritesList = movies.filter(m => {
-      return this.state.FavoriteMovies.includes(m._id);
-      // return this.state.FavoriteMovies;
-    });
+
     console.log('line 66');
     console.log(this.props);
     console.log(this.state);
@@ -152,61 +202,32 @@ export class UserView extends React.Component {
             <div className='user-username'>
               <span className='title'>Username: </span>
               <span className='value'>{`${this.props.user}`}</span>
-              <div>
-                <UnopDropdown align='center' className='float-right' trigger={
-                  <Button className='float-right update-button' variant='light' style={{ color: 'white', background: '#4d65ff' }}>Update</Button>
-                }>
-                  <form className='side-by-side'>
-                    <input type='text' placeholder='New username' name='Username' onChange={(e) => this.setField(e)} />
-                    <input type='submit' value='Submit' onSubmit={(e) => this.handleUpdate(e)} />
-                  </form>
-                </UnopDropdown>
-              </div>
             </div>
 
             <div className='user-email'>
               <span className='title'>Email: </span>
               <span className='value'>{`${this.state.Email}`}</span>
-              <div>
-                <UnopDropdown align='center' className='float-right' trigger={
-                  <Button className='float-right update-button' variant='light' style={{ color: 'white', background: '#4d65ff' }}>Update</Button>
-                }>
-                  <form className='side-by-side'>
-                    <input type="text" placeholder='New email' name="email" />
-                    <input type="submit" value="Submit" />
-                  </form>
-                </UnopDropdown>
-              </div>
             </div>
 
             <div className='user-password'>
               <span className='title'>Password: ********</span>
               {/* <span className='value'>{`${this.state.Password}`}</span> */}
-              <div>
-                <UnopDropdown align='center' className='float-right' trigger={
-                  <Button className='float-right update-button' variant='light' style={{ color: 'white', background: '#4d65ff' }}>Update</Button>
-                }>
-                  <form className='side-by-side'>
-                    <input type="text" placeholder='New password' name="password" />
-                    <input type="submit" value="Submit" />
-                  </form>
-                </UnopDropdown>
-              </div>
             </div>
 
             <div className='user-birthday'>
               <span className='title'>Birthday: </span>
               <span className='value'>{`${this.state.Birthday}`}</span>
-              <div>
-                <UnopDropdown align='center' className='float-right' trigger={
-                  <Button className='float-right update-button' variant='light' style={{ color: 'white', background: '#4d65ff' }}>Update</Button>
-                }>
-                  <form className='side-by-side'>
-                    <input type="text" placeholder='New birthday' name="birthday" />
-                    <input type="submit" value="Submit" />
-                  </form>
-                </UnopDropdown>
-              </div>
+            </div>
+
+            <div className='user-section'>
+              {/* !!!!!!! INSERT MODAL HERE !!!!!!! */}
+              <a onClick={() => this.setState({ showModal: true })}>
+                <Button
+                  variant='light' style={{ color: 'white', background: '#9ba9ff' }}>
+                  Update user info
+                </Button>
+              </a>
+              {this.state.showModal && this.renderModal()}
             </div>
           </div>
 
