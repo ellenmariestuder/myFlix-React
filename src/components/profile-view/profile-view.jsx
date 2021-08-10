@@ -140,10 +140,10 @@ export class UserView extends React.Component {
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">Update User Info</h5>
+              <h5 className="modal-title" id="exampleModalLongTitle">Update user info</h5>
 
               <button type="button" className="close" data-dismiss="modal"
-                aria-label="Close">
+                aria-label="Close" onClick={() => this.setState({ showModal: false })}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -166,16 +166,17 @@ export class UserView extends React.Component {
                   <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
                 {/* <Button variant='light' type='submit' onClick={handleSubmit} */}
-                <Button variant='light' type='submit'
-                  style={{ color: 'white', background: '#9ba9ff', outlineColor: 'white' }}>Update</Button>
-                {/* <Button variant='primary' type='submit' onClick={onLoggedIn}>Register!</Button> */}
+                {/* <Button variant='light' type='submit'
+                  style={{ color: 'white', background: '#9ba9ff', outlineColor: 'white' }}>Update</Button> */}
               </Form>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-
-                dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save
-                changes</button>
+                dismiss="modal" onClick={() => this.setState({ showModal: false })}>
+                Close</button>
+              <button type="button" className="btn btn-primary"
+                variant='light' style={{ color: 'white', backgroundColor: '#4d65ff' }}>
+                Save changes</button>
             </div>
           </div>
         </div>
@@ -251,7 +252,7 @@ export class UserView extends React.Component {
           </div>
 
           <Link to={`/`}>
-            <Button variant='light' style={{ color: 'white', background: '#9ba9ff' }}>Home</Button>
+            <Button variant='light' style={{ color: 'white', background: '#9ba9ff' }} size='lg'>Home</Button>
           </Link>
 
         </Col>
