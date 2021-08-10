@@ -132,7 +132,6 @@ export class UserView extends React.Component {
   }
 
   renderModal() {
-    // console.log("the link " + this.props.url + " was clicked.")
     console.log("the link was clicked.")
 
     return (
@@ -165,9 +164,6 @@ export class UserView extends React.Component {
                   <Form.Label>New Password:</Form.Label>
                   <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
-                {/* <Button variant='light' type='submit' onClick={handleSubmit} */}
-                {/* <Button variant='light' type='submit'
-                  style={{ color: 'white', background: '#9ba9ff', outlineColor: 'white' }}>Update</Button> */}
               </Form>
             </div>
             <div className="modal-footer">
