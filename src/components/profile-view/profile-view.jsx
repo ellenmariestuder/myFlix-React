@@ -60,25 +60,30 @@ export class UserView extends React.Component {
     // e.preventDefault();
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    axios.put(`https://getmyflix.herokuapp.com/users/${localStorage.getItem('user')}`, {
-      Username: this.state.Username,
-      Password: this.state.Password,
-      Email: this.state.Email,
-      Birthday: this.state.Birthday
-
-      // Username: Username
-      // Username: username
-      // Password: password,
-      // Email: email,
-      // Birthday: birthday
-    },
-      { headers: { Authorization: `Bearer ${token}` } }
+    axios.put(`https://getmyflix.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday
+      },
+    }
+      // { headers: { Authorization: `Bearer ${token}` } }
     )
       .then((response) => {
-        const data = response.data;
-        console.log(data);
-        alert(user + ' has been updated.');
-        window.open('{`/users/${this.props.user}`}', '_self');
+        alert('Changes saved!');
+        // const data = response.data;
+        this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday
+        })
+        // console.log(data);
+        // alert(user + ' has been updated.');
+        localStorage.setItem('user', this.state.Username);
+        window.open(`/users/${user}`, '_self');
       })
       .catch(e => {
         console.log('error updating user')
@@ -110,10 +115,11 @@ export class UserView extends React.Component {
     }
   }
 
-  handleRemove() {
+  handleRemove(movie) {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    axios.delete(`https://getmyflix.herokuapp.com/users/${user}/Movies/${user.FavoriteMovies._id}`, {
+    console.log(`https://getmyflix.herokuapp.com/users/${user}/Movies/${movie._id}`)
+    axios.delete(`https://getmyflix.herokuapp.com/users/${user}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       // axios.post(`https://getmyflix.herokuapp.com/users/${user}/Movies/` +
@@ -150,26 +156,26 @@ export class UserView extends React.Component {
               <Form>
                 <Form.Group controlId='formUsername'>
                   <Form.Label>New Username:</Form.Label>
-                  <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+                  <Form.Control name='Username' type='text' onChange={e => this.setField(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId='formEmail'>
                   <Form.Label>New Email:</Form.Label>
-                  <Form.Control type='email' onChange={e => setEmail(e.target.value)} />
+                  <Form.Control name='Email' type='email' onChange={e => this.setField(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId='formBirthday'>
                   <Form.Label>New Birthday:</Form.Label>
-                  <Form.Control type='date' onChange={e => setBirthday(e.target.value)} />
+                  <Form.Control name='Birthday' type='date' onChange={e => this.setField(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId='formPassword'>
                   <Form.Label>New Password:</Form.Label>
-                  <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
+                  <Form.Control name='Password' type='password' onChange={e => this.setField(e.target.value)} />
                 </Form.Group>
               </Form>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-
                 dismiss="modal" onClick={() => this.setState({ showModal: false })}>
-                Close</button>
+                Cancel</button>
               <button type="button" className="btn btn-primary"
                 variant='light' style={{ color: 'white', backgroundColor: '#4d65ff' }}>
                 Save changes</button>
@@ -183,6 +189,10 @@ export class UserView extends React.Component {
   render() {
     // const { movies, FavoriteMovies } = this.props;
     const { movies } = this.props;
+    const favoritesList = movies.filter(m => {
+      return this.state.FavoriteMovies.includes(m._id);
+      // return this.state.FavoriteMovies;
+    });
 
     console.log('line 66');
     console.log(this.props);
@@ -232,10 +242,11 @@ export class UserView extends React.Component {
             <div className='section-header'> Your favorite movies: </div>
             <div className='user-movies'>
               <div className='value'>
-                {this.state.FavoriteMovies
+                {/* {this.state.FavoriteMovies */}
+                {favoritesList
                   // .map(t => <div>{t}</div>)
-                  .map(movie => <div>{movie} {" "}
-                    <Button variant='outline-danger' onClick={() => this.handleRemove()} >x</Button>
+                  .map(movie => <div key={movie._id}> {movie.Title} {" "}
+                    <Button variant='outline-danger' onClick={() => this.handleRemove(movie)} >x</Button>
                   </div>)
                 }
               </div>
