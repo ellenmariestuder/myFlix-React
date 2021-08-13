@@ -46,15 +46,8 @@ export class UserView extends React.Component {
       });
   }
 
-  // setField(e) {
-  //   let { name, value } = e.target;
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
-
   handleSubmit(e) {
-    console.log('click click');
+    // console.log('click click');
     // e.preventDefault();
 
     const token = localStorage.getItem('token');
@@ -78,8 +71,8 @@ export class UserView extends React.Component {
     }
 
     axios(config)
-      .then(function (response) {
-        // const data = response.data;
+      .then((response) => {
+        console.log(response.data)
         console.log(JSON.stringify(response.data));
         alert('Changes saved!');
 
@@ -90,9 +83,8 @@ export class UserView extends React.Component {
           Birthday: response.data.Birthday,
           FavoriteMovies: response.data.FavoriteMovies
         })
-        // console.log(data);
-        localStorage.setItem('user', this.state.Username);
-        window.open(`/users/${user}`, '_self');
+        localStorage.setItem('user', response.data.Username);
+        window.open(`/users/${response.data.Username}`, '_self');
       })
       .catch(function (error) {
         console.log('error updating user', error);
@@ -194,11 +186,9 @@ export class UserView extends React.Component {
   }
 
   render() {
-    // const { movies, FavoriteMovies } = this.props;
     const { movies } = this.props;
     const favoritesList = movies.filter(m => {
       return this.state.FavoriteMovies.includes(m._id);
-      // return this.state.FavoriteMovies;
     });
 
     console.log('line 66');
