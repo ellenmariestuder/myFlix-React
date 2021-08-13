@@ -13,13 +13,11 @@ export class UserView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // username: null,
       Username: null,
       Password: null,
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      // validated: null
       showModal: null
     }
   }
@@ -48,48 +46,58 @@ export class UserView extends React.Component {
       });
   }
 
-  setField(e) {
-    let { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
-  }
+  // setField(e) {
+  //   let { name, value } = e.target;
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
 
-  // handleUpdate(e) {
   handleSubmit(e) {
+    console.log('click click');
     // e.preventDefault();
+
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    axios.put(`https://getmyflix.herokuapp.com/users/${user}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      data: {
-        Username: newUsername ? newUsername : this.state.Username,
-        Password: newPassword ? newPassword : this.state.Password,
-        Email: newEmail ? newEmail : this.state.Email,
-        Birthday: newBirthday ? newBirthday : this.state.Birthday
+
+    let data = JSON.stringify({
+      Username: this.state.Username,
+      Password: this.state.Password,
+      Email: this.state.Email,
+      Birthday: this.state.Birthday
+    });
+
+    var config = {
+      method: 'put',
+      url: `https://getmyflix.herokuapp.com/users/${user}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
+      data: data
     }
-      // { headers: { Authorization: `Bearer ${token}` } }
-    )
-      .then((response) => {
-        alert('Changes saved!');
+
+    axios(config)
+      .then(function (response) {
         // const data = response.data;
+        console.log(JSON.stringify(response.data));
+        alert('Changes saved!');
+
         this.setState({
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthday: response.data.Birthday
+          Birthday: response.data.Birthday,
+          FavoriteMovies: response.data.FavoriteMovies
         })
         // console.log(data);
-        // alert(user + ' has been updated.');
         localStorage.setItem('user', this.state.Username);
         window.open(`/users/${user}`, '_self');
       })
-      .catch(e => {
-        console.log('error updating user')
+      .catch(function (error) {
+        console.log('error updating user', error);
+        console.error(error.response.data);
       });
-    // console.log(username, email, birthday, password);
-    // props.onLoggedIn(username);
   };
 
   handleDelete() {
@@ -122,11 +130,6 @@ export class UserView extends React.Component {
     axios.delete(`https://getmyflix.herokuapp.com/users/${user}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      // axios.post(`https://getmyflix.herokuapp.com/users/${user}/Movies/` +
-      //   movie._id, {},
-      //   {
-      //     headers: { Authorization: `Bearer ${token}` }
-      //   })
       .then(() => {
         alert('Movie was removed');
         this.componentDidMount();
@@ -134,7 +137,6 @@ export class UserView extends React.Component {
       .catch(function (error) {
         console.log(error);
       })
-    // .then(() => window.location.reload());
   }
 
   renderModal() {
@@ -156,19 +158,23 @@ export class UserView extends React.Component {
               <Form>
                 <Form.Group controlId='formUsername'>
                   <Form.Label>New Username:</Form.Label>
-                  <Form.Control name='Username' type='text' onChange={e => this.setField(e.target.value)} />
+                  <Form.Control name='Username' type='text' onChange={(e) =>
+                    this.setState({ Username: e.target.value })} />
                 </Form.Group>
                 <Form.Group controlId='formEmail'>
                   <Form.Label>New Email:</Form.Label>
-                  <Form.Control name='Email' type='email' onChange={e => this.setField(e.target.value)} />
+                  <Form.Control name='Email' type='email' onChange={(e) =>
+                    this.setState({ Email: e.target.value })} />
                 </Form.Group>
                 <Form.Group controlId='formBirthday'>
                   <Form.Label>New Birthday:</Form.Label>
-                  <Form.Control name='Birthday' type='date' onChange={e => this.setField(e.target.value)} />
+                  <Form.Control name='Birthday' type='date' onChange={(e) =>
+                    this.setState({ Birthday: e.target.value })} />
                 </Form.Group>
                 <Form.Group controlId='formPassword'>
                   <Form.Label>New Password:</Form.Label>
-                  <Form.Control name='Password' type='password' onChange={e => this.setField(e.target.value)} />
+                  <Form.Control name='Password' type='password' onChange={(e) =>
+                    this.setState({ Password: e.target.value })} />
                 </Form.Group>
               </Form>
             </div>
@@ -176,7 +182,8 @@ export class UserView extends React.Component {
               <button type="button" className="btn btn-secondary" data-
                 dismiss="modal" onClick={() => this.setState({ showModal: false })}>
                 Cancel</button>
-              <button type="button" className="btn btn-primary"
+              <button onClick={() => this.handleSubmit()}
+                type="button" className="btn btn-primary"
                 variant='light' style={{ color: 'white', backgroundColor: '#4d65ff' }}>
                 Save changes</button>
             </div>
@@ -227,7 +234,6 @@ export class UserView extends React.Component {
             </div>
 
             <div className='user-section'>
-              {/* !!!!!!! INSERT MODAL HERE !!!!!!! */}
               <a onClick={() => this.setState({ showModal: true })}>
                 <Button
                   variant='light' style={{ color: 'white', background: '#9ba9ff' }}>
@@ -242,9 +248,7 @@ export class UserView extends React.Component {
             <div className='section-header'> Your favorite movies: </div>
             <div className='user-movies'>
               <div className='value'>
-                {/* {this.state.FavoriteMovies */}
                 {favoritesList
-                  // .map(t => <div>{t}</div>)
                   .map(movie => <div key={movie._id}> {movie.Title} {" "}
                     <Button variant='outline-danger' onClick={() => this.handleRemove(movie)} >x</Button>
                   </div>)
