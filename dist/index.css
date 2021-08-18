@@ -1,6 +1,11 @@
-.my-flix {
-  color: steelblue;
+.header {
+  color: #9ba9ff;
 }
+
+.registerTitle {
+  margin-top: 2em;
+}
+
 .movie-poster {
   padding-bottom: 5%;
 }
@@ -23,19 +28,6 @@
 .favorites-btn {
   height: 3em;
   margin: 5%;
-}
-.header {
-  color: #9ba9ff;
-}
-
-.registerTitle {
-  margin-top: 2em;
-}
-.header {
-  color: #9ba9ff;
-}
-.headerCol {
-  margin-bottom: 2em;
 }
 .title {
   font-size: 20px;
@@ -89,5 +81,13 @@
   display: flex;
   flex-direction: row;
 }
-
-/*# sourceMappingURL=index.79256842.css.map */
+.headerCol {
+  margin-bottom: 2em;
+}
+.header {
+  color: #9ba9ff;
+}
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.css.map */
