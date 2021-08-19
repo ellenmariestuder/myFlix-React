@@ -1,0 +1,93 @@
+.header {
+  color: #9ba9ff;
+}
+
+.registerTitle {
+  margin-top: 2em;
+}
+.header {
+  color: #9ba9ff;
+}
+.movie-poster {
+  padding-bottom: 5%;
+}
+
+.movie-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.movie-description {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.back-button {
+  position: float-right;
+  height: 3em;
+}
+
+.favorites-btn {
+  height: 3em;
+  margin: 5%;
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.value {
+  padding-bottom: 5%;
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.value {
+  padding-bottom: 5%;
+}
+.section-header {
+  font-size: 20px;
+  padding-bottom: 3%;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.user-section {
+  padding-bottom: 5%;
+}
+
+.update-button {
+  font-size: 13px;
+  display: flex;
+  border: #4d65ff;
+}
+
+.user-username, .user-email, .user-password, .user-birthday {
+  padding-bottom: 1em;
+}
+
+.drop-down {
+  margin-bottom: 120px;
+}
+
+.remove-movie {
+  padding-top: 50px;
+}
+
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}
+.headerCol {
+  margin-bottom: 2em;
+}
+
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.047ecbfc.css.map */

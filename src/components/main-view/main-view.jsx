@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
 
 import { connect } from 'react-redux';
 
@@ -22,10 +22,7 @@ import { UserView } from '../profile-view/profile-view';
 
 import './main-view.scss'
 
-// START-NEW (3.8, REDUX)-------------------------------------------------
-
-import { setMovies } from '../../actions/actions';
-
+import { setMovies, loginUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 class MainView extends React.Component {
@@ -68,12 +65,21 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
+    // this.props.loginUser(authData.user.Username);
     this.setState({
-      user: authData.user.Username
+      user: authData.user.Username,
     });
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
   }
 
   onRegister() {
@@ -103,43 +109,42 @@ class MainView extends React.Component {
     let { movies } = this.props;
     let { user, registered, userData } = this.state;
 
+    if (!user && !registered) return <Row>
+      <Col>
+        <RegistrationView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
+      </Col>
+    </Row>
+
+    if (!user) return <Col>
+      <LoginView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
+    </Col>
+
     return (
       <Router>
         <Row className='main-view justify-content-md-center'>
 
           <Col className='headerCol' md={12}>
-            <Navbar>
+            <Navbar >
               <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
+
+                {/* <Nav className='mr-auto' style={{ display: 'flex', margin: 'auto' }}> */}
                 <Nav className='mr-auto'>
                   <Nav.Link href='/'>Home</Nav.Link>
                   <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
                   <NavDropdown title='Settings' id='basic-nav-dropdown'>
-                    {/* <NavDropdown.Item href={`/users/${user}`}>Account</NavDropdown.Item> */}
                     <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-                <Form inline>
-                  <Form.Control type='text' placeholder='Search' className='mr-sm-2' />
-                  <Button variant='light' style={{ color: 'white', backgroundColor: '#4d65ff' }}>Search</Button>
-                </Form>
+
               </Navbar.Collapse>
             </Navbar>
           </Col>
 
 
           <Route exact path='/' render={() => {
-            if (!user && !registered) return <Row>
-              <Col>
-                <RegistrationView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
-              </Col>
-            </Row>
-
-            if (!user) return <Col>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
             if (movies.length === 0) return <div className='main-view' />;
             return <MoviesList movies={movies} />;
           }} />
@@ -151,21 +156,21 @@ class MainView extends React.Component {
           }} />
 
           <Route path='/genre/:name' render={({ match, history }) => {
-            // if (movies.length === 0) return <div className='main-view' />;
+            if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
               <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
             </Col>
           }} />
 
           <Route path='/director/:name' render={({ match, history }) => {
-            // if (movies.length === 0) return <div className='main-view' />;
+            if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
               <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
             </Col>
           }} />
 
           <Route path='/users/:Username' render={({ history }) => {
-            // if (movies.length === 0) return <div className='main-view' />;
+            if (movies.length === 0) return <div className='main-view' />;
             return (
               <Col md={8}>
                 <UserView user={user} userData={userData} movies={movies} onBackClick={() => history.goBack()} />
@@ -180,7 +185,10 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return {
+    movies: state.movies,
+    user: state.user
+  }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, loginUser })(MainView);

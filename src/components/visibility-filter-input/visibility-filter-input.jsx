@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
-import { setFileter } from '../../actions/actions';
+import { setFilter } from '../../actions/actions';
 
 function VisibilityFilterInput(props) {
   return <Form.Control
-    onChange={e => props.setFileter(e.target.value)}
+    onChange={e => props.setFilter(e.target.value)}
     value={props.visibilityFilter}
     placeholder='filter'
   />;

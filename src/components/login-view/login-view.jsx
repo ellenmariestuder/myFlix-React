@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/actions';
 
 import './login-view.scss';
 
@@ -24,14 +26,11 @@ export function LoginView(props) {
       .catch(e => {
         console.log('no such user')
       });
-    // console.log(username, password);
-    // props.onLoggedIn(username);
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('registered');
-    // send request to server for auth
     props.onRegister(false);
   };
 
@@ -59,3 +58,9 @@ export function LoginView(props) {
     </Row>
   );
 }
+
+let mapStateToProps = (state) => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps, { loginUser })(LoginView);

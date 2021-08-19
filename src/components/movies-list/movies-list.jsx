@@ -2,7 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/col';
 import { connect } from 'react-redux';
 
-import visibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from '../movie-card/movie-card';
 
 const mapStateToProps = state => {
@@ -24,7 +24,7 @@ function MoviesList(props) {
 
   return <>
     <Col md={12} style={{ margin: '1em' }}>
-      <visibilityFilterInput visibilityFilter={visibilityFilter} />
+      <VisibilityFilterInput visibilityFilter={visibilityFilter} />
     </Col>
     {filteredMovies.map(m => (
       <Col md={3} key={m._id}>
