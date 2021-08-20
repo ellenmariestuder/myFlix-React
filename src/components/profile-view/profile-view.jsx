@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import Modal from 'react-modal';
 
@@ -258,4 +259,18 @@ export class UserView extends React.Component {
       </Row >
     );
   }
+}
+
+UserView.propTypes = {
+  user: PropTypes.shape({
+    FavoriteMovies: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired
+      })
+    ),
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthdate: PropTypes.date
+  })
 }

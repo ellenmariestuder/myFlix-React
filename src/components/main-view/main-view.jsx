@@ -19,19 +19,6 @@ import './main-view.scss'
 
 class MainView extends React.Component {
 
-  // constructor() {
-  //   super();
-
-  //   // this.state = {
-  //   //   user: null,
-  //   //   token: null,
-  //   //   // movies: [],
-  //   //   // selectedMovie: null,
-  //   //   // userData: null,
-  //   //   // registered: true
-  //   // };
-  // }
-
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -100,9 +87,7 @@ class MainView extends React.Component {
   }
 
   render() {
-
     let { movies, user } = this.props;
-    // let { user, registered, userData } = this.state;
 
     return (
       <Router>
