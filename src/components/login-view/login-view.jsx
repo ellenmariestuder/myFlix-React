@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
-
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/actions';
+import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import './login-view.scss';
 
@@ -26,39 +24,34 @@ export function LoginView(props) {
       });
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log('registered');
-    props.onRegister(false);
-  };
-
   return (
     <Row>
       <Col md={6}>
         <Form>
           <h1 className='header'>myFlix</h1>
+
           <h2>Login</h2>
           <Form.Group controlId='formUsername'>
             <Form.Label>Username:</Form.Label>
             <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
           </Form.Group>
+
           <Form.Group controlId='formPassword'>
             <Form.Label>Password:</Form.Label>
             <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
           </Form.Group>
+
           <Button variant='light' type='submit' onClick={handleSubmit}
             style={{ color: 'white', background: '#9ba9ff' }}>Submit</Button>
+
           <h4 className='registerTitle'>Don't have an account yet?</h4>
-          <Button variant='light' type='submit' onClick={handleRegister}
-            style={{ color: 'white', background: '#9ba9ff' }}>Register!</Button>
+          <Link to={`/register`}>
+            <Button variant='light'
+              style={{ color: 'white', background: '#9ba9ff' }}>Register!</Button>
+          </Link>
+
         </Form>
       </Col>
     </Row>
   );
 }
-
-// let mapStateToProps = (state) => {
-//   return { user: state.user };
-// };
-
-// export default connect(mapStateToProps, { loginUser })(LoginView);

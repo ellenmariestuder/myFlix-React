@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { Row, Col, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { setMovies, loginUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
-
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -117,18 +116,9 @@ class MainView extends React.Component {
     let { movies } = this.props;
     let { user, registered, userData } = this.state;
 
-    if (!user && !registered) return <Row>
-      <Col>
-        <RegistrationView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
-      </Col>
-    </Row>
-
-    if (!user) return <Col>
-      <LoginView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
-    </Col>
-
     return (
       <Router>
+
         <Row className='main-view justify-content-md-center'>
 
           <Col className='headerCol' md={12}>
@@ -151,10 +141,17 @@ class MainView extends React.Component {
             </Navbar>
           </Col>
 
-
           <Route exact path='/' render={() => {
+            if (!user) return <Col>
+              <LoginView onRegister={(registered) => this.onRegister(registered)} onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+
             if (movies.length === 0) return <div className='main-view' />;
             return <MoviesList movies={movies} />;
+          }} />
+
+          <Route path='/register' render={() => {
+            return <Col> <RegistrationView /> </Col>
           }} />
 
           <Route path='/movies/:movieId' render={({ match, history }) => {
