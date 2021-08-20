@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Button, Form } from 'react-bootstrap';
 import { onLoggedIn } from '../main-view/main-view';
 import { onRegister } from '../main-view/main-view';
 
@@ -31,8 +28,6 @@ export function RegistrationView(props) {
       .catch(e => {
         console.log('error registering user')
       });
-    // console.log(username, email, birthday, password);
-    // props.onLoggedIn(username);
   };
 
   return (

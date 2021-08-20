@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Form, Button } from 'react-bootstrap';
+
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/actions';
@@ -59,8 +57,8 @@ export function LoginView(props) {
   );
 }
 
-let mapStateToProps = (state) => {
-  return { user: state.user };
-};
+// let mapStateToProps = (state) => {
+//   return { user: state.user };
+// };
 
-export default connect(mapStateToProps, { loginUser })(LoginView);
+// export default connect(mapStateToProps, { loginUser })(LoginView);

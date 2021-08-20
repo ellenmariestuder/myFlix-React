@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import React from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import Modal from 'react-modal';
-// import UnopDropdown from 'unop-react-dropdown';
 
 import './profile-view.scss';
 

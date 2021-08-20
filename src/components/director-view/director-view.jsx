@@ -1,7 +1,5 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Button } from 'react-bootstrap';
 
 import './director-view.scss';
 
@@ -21,7 +19,6 @@ export class DirectorView extends React.Component {
             <div className='value'>
               {director.Movies
                 .map(t => <div>{t}</div>)
-                // .reduce((prev, curr) => [prev, ', ', curr])
               }
             </div>
           </div>

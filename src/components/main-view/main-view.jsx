@@ -1,20 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstrap/Button';
+import { Row, Col, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
+import { setMovies, loginUser } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-// import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
@@ -22,8 +17,6 @@ import { UserView } from '../profile-view/profile-view';
 
 import './main-view.scss'
 
-import { setMovies, loginUser } from '../../actions/actions';
-import MoviesList from '../movies-list/movies-list';
 
 class MainView extends React.Component {
 
@@ -47,6 +40,7 @@ class MainView extends React.Component {
       });
       console.log('component did mount');
       this.getMovies(accessToken);
+      this.getUser(accessToken);
       this.getAcc(accessToken);
     }
   }
@@ -57,6 +51,20 @@ class MainView extends React.Component {
     })
       .then(response => {
         this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  getUser(token) {
+    axios.get('https://getmyflix.herokuapp.com/users/${user}', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          userData: response.data
+        });
       })
       .catch(function (error) {
         console.log(error);

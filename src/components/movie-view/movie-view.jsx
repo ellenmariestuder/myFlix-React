@@ -1,8 +1,6 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { Row, Col, Button } from 'react-bootstrap';
 
 import './movie-view.scss';
 
