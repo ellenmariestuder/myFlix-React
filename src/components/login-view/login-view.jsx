@@ -28,7 +28,7 @@ export function LoginView(props) {
     <Row>
       <Col md={6}>
         <Form>
-          <h1 className='header'>myFlix</h1>
+          {/* <h1 className='header'>myFlix</h1> */}
 
           <h2>Login</h2>
           <Form.Group controlId='formUsername'>
