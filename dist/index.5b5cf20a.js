@@ -25002,6 +25002,9 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/movies/:movieId",
             render: ({ match , history  })=>{
+                if (!user.length) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                })));
                 return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -25018,6 +25021,9 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/genre/:name",
             render: ({ match , history  })=>{
+                if (!user.length) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
@@ -25031,12 +25037,15 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 150
+                lineNumber: 153
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/director/:name",
             render: ({ match , history  })=>{
+                if (!user.length) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
@@ -25050,12 +25059,15 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 157
+                lineNumber: 163
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/users/:Username",
             render: ({ history  })=>{
+                if (!user.length) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
@@ -25070,7 +25082,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 164
+                lineNumber: 173
             },
             __self: this
         }))));
