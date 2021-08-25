@@ -1,4 +1,16 @@
+.card-image-container {
+  max-height: 310px;
+  overflow: hidden;
+}
 
+.card-title {
+  margin-bottom: 0.75rem;
+  min-height: 50px;
+}
+
+.accordion .card:first-of-type {
+  border-bottom: 1px solid lightgrey !important;
+}
 .header {
   color: #9ba9ff;
 }

@@ -12,8 +12,9 @@ export class MovieCard extends React.Component {
     return (
       <Accordion>
         <Card style={{ marginTop: '1em' }}>
-          <Card.Img variant='top' src={movie.ImagePath} />
-
+          <div class="card-image-container">
+            <Card.Img variant='top' src={movie.ImagePath} />
+          </div>
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
 
