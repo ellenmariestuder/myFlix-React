@@ -1,8 +1,6 @@
 {
   "name": "myflix-client",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel src/index.html"
@@ -13,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/ellenmariestuder/myFlix-client.git"
   },
+  "description": "",
   "dependencies": {
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
