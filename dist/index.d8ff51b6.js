@@ -41904,7 +41904,19 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UserView", ()=>UserView
-);
+); // UserView.propTypes = {
+ //   user: PropTypes.shape({
+ //     FavoriteMovies: PropTypes.arrayOf(
+ //       PropTypes.shape({
+ //         _id: PropTypes.object.isRequired
+ //       })
+ //     ),
+ //     Username: PropTypes.string.isRequired,
+ //     Password: PropTypes.string.isRequired,
+ //     Email: PropTypes.string.isRequired,
+ //     Birthdate: PropTypes.date
+ //   })
+ // }
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _react = require("react");
@@ -42472,17 +42484,6 @@ class UserView extends _reactDefault.default.Component {
         }, "Home")))));
     }
 }
-UserView.propTypes = {
-    user: _propTypesDefault.default.shape({
-        FavoriteMovies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
-            _id: _propTypesDefault.default.string.isRequired
-        })),
-        Username: _propTypesDefault.default.string.isRequired,
-        Password: _propTypesDefault.default.string.isRequired,
-        Email: _propTypesDefault.default.string.isRequired,
-        Birthdate: _propTypesDefault.default.date
-    })
-};
 
   helpers.postlude(module);
 } finally {

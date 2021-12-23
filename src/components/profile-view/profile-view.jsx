@@ -261,16 +261,16 @@ export class UserView extends React.Component {
   }
 }
 
-UserView.propTypes = {
-  user: PropTypes.shape({
-    FavoriteMovies: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired
-      })
-    ),
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-    Birthdate: PropTypes.date
-  })
-}
+// UserView.propTypes = {
+//   user: PropTypes.shape({
+//     FavoriteMovies: PropTypes.arrayOf(
+//       PropTypes.shape({
+//         _id: PropTypes.object.isRequired
+//       })
+//     ),
+//     Username: PropTypes.string.isRequired,
+//     Password: PropTypes.string.isRequired,
+//     Email: PropTypes.string.isRequired,
+//     Birthdate: PropTypes.date
+//   })
+// }
