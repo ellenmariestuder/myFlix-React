@@ -58,7 +58,8 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.props.setUser(authData.user.Username);
+    // this.props.setUser(authData.user.Username);
+    this.setState({ user: authData.user.Username }) //trying this-- 12/23/21
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
@@ -78,6 +79,7 @@ class MainView extends React.Component {
         this.setState({
           userData: response.data
         });
+        // this.props.setUser(response.data); //trying this-- 12/23/21
         console.log(response.data)
       })
       .catch(function (error) {

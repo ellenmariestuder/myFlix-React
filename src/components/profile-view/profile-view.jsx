@@ -1,16 +1,15 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Form } from 'react-bootstrap';
-import Modal from 'react-modal';
 
 import './profile-view.scss';
 
 import { Link } from "react-router-dom";
 
 export class UserView extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       Username: null,
       Password: null,
@@ -39,6 +38,7 @@ export class UserView extends React.Component {
           FavoriteMovies: response.data.FavoriteMovies
         });
         console.log('getUser response', response.data)
+        console.log(this.state)
       })
       .catch(function (error) {
         console.log(error);
@@ -190,9 +190,9 @@ export class UserView extends React.Component {
       return this.state.FavoriteMovies.includes(m._id);
     });
 
-    console.log('line 66');
-    console.log(this.props);
-    console.log(this.state);
+    // console.log('line 66');
+    // console.log(this.props);
+    // console.log(this.state);
 
     return (
       <Row className='user-view justify-content-md-center'>
@@ -261,16 +261,16 @@ export class UserView extends React.Component {
   }
 }
 
-// UserView.propTypes = {
-//   user: PropTypes.shape({
-//     FavoriteMovies: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         _id: PropTypes.object.isRequired
-//       })
-//     ),
-//     Username: PropTypes.string.isRequired,
-//     Password: PropTypes.string.isRequired,
-//     Email: PropTypes.string.isRequired,
-//     Birthdate: PropTypes.date
-//   })
-// }
+UserView.propTypes = {
+  userData: PropTypes.shape({
+    FavoriteMovies: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired
+      })
+    ),
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthdate: PropTypes.date
+  })
+}
