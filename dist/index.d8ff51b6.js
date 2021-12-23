@@ -24878,91 +24878,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 97
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
-            className: "headerCol",
-            md: 12,
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 99
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 100
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-            href: "/",
-            style: {
-                color: '#9ba9ff',
-                fontSize: '36px'
-            },
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 101
-            },
-            __self: this
-        }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
-            "aria-controls": "basic-navbar-nav",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 102
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
-            id: "basic-navbar-nav",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 103
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
-            className: "mr-auto",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 106
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-            href: "/",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 107
-            },
-            __self: this
-        }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
-            href: `/users/${user}`,
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 108
-            },
-            __self: this
-        }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
-            title: "Settings",
-            id: "basic-nav-dropdown",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 109
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
-            href: "#action/",
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 110
-            },
-            __self: this
-        }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
-            onClick: ()=>{
-                this.onLoggedOut();
-            },
-            __source: {
-                fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 111
-            },
-            __self: this
-        }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             exact: true,
             path: "/",
             render: ()=>{
@@ -24972,13 +24888,41 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
-                return(/*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                    className: "headerCol",
+                    md: 12
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+                    href: "/",
+                    style: {
+                        color: '#9ba9ff',
+                        fontSize: '36px'
+                    }
+                }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+                    id: "basic-navbar-nav"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+                    className: "mr-auto"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: "/"
+                }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: `/users/${user}`
+                }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
+                    title: "Settings",
+                    id: "basic-nav-dropdown"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    href: "#action/"
+                }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    }
+                }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
                     movies: movies
-                }));
+                }), ";")));
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 119
+                lineNumber: 99
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -24997,13 +24941,41 @@ class MainView extends _reactDefault.default.Component {
                 if (!user.length) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
-                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                    className: "headerCol",
+                    md: 12
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+                    href: "/",
+                    style: {
+                        color: '#9ba9ff',
+                        fontSize: '36px'
+                    }
+                }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+                    id: "basic-navbar-nav"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+                    className: "mr-auto"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: "/"
+                }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: `/users/${user}`
+                }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
+                    title: "Settings",
+                    id: "basic-nav-dropdown"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    href: "#action/"
+                }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    }
+                }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
                     movie: movies.find((m)=>m._id === match.params.movieId
                     ),
                     onBackClick: ()=>history.goBack()
-                })));
+                }))));
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
@@ -25019,17 +24991,45 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
-                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                    className: "headerCol",
+                    md: 12
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+                    href: "/",
+                    style: {
+                        color: '#9ba9ff',
+                        fontSize: '36px'
+                    }
+                }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+                    id: "basic-navbar-nav"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+                    className: "mr-auto"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: "/"
+                }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: `/users/${user}`
+                }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
+                    title: "Settings",
+                    id: "basic-nav-dropdown"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    href: "#action/"
+                }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    }
+                }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_genreView.GenreView, {
                     genre: movies.find((m)=>m.Genre.Name === match.params.name
                     ).Genre,
                     onBackClick: ()=>history.goBack()
-                })));
+                }))));
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 140
+                lineNumber: 158
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -25041,17 +25041,45 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
-                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                    className: "headerCol",
+                    md: 12
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+                    href: "/",
+                    style: {
+                        color: '#9ba9ff',
+                        fontSize: '36px'
+                    }
+                }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+                    id: "basic-navbar-nav"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+                    className: "mr-auto"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: "/"
+                }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: `/users/${user}`
+                }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
+                    title: "Settings",
+                    id: "basic-nav-dropdown"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    href: "#action/"
+                }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    }
+                }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_directorView.DirectorView, {
                     director: movies.find((m)=>m.Director.Name === match.params.name
                     ).Director,
                     onBackClick: ()=>history.goBack()
-                })));
+                }))));
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 150
+                lineNumber: 186
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -25063,18 +25091,46 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }));
-                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+                    className: "headerCol",
+                    md: 12
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+                    href: "/",
+                    style: {
+                        color: '#9ba9ff',
+                        fontSize: '36px'
+                    }
+                }, "myFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "basic-navbar-nav"
+                }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+                    id: "basic-navbar-nav"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+                    className: "mr-auto"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: "/"
+                }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+                    href: `/users/${user}`
+                }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown, {
+                    title: "Settings",
+                    id: "basic-nav-dropdown"
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    href: "#action/"
+                }, "Support"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.NavDropdown.Item, {
+                    onClick: ()=>{
+                        this.onLoggedOut();
+                    }
+                }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.UserView, {
                     user: user,
                     userData: this.props.userData,
                     movies: movies,
                     onBackClick: ()=>history.goBack()
-                })));
+                }))));
             },
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
-                lineNumber: 160
+                lineNumber: 214
             },
             __self: this
         }))));

@@ -96,13 +96,17 @@ class MainView extends React.Component {
 
         <Row className='main-view justify-content-md-center'>
 
-          <Col className='headerCol' md={12}>
+          <Route exact path='/' render={() => {
+            if (!user.length) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className='main-view' />;
+            return <Col> 
+            <Col className='headerCol' md={12}>
             <Navbar >
               <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
-
-                {/* <Nav className='mr-auto' style={{ display: 'flex', margin: 'auto' }}> */}
                 <Nav className='mr-auto'>
                   <Nav.Link href='/'>Home</Nav.Link>
                   <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
@@ -111,17 +115,13 @@ class MainView extends React.Component {
                     <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-
               </Navbar.Collapse>
             </Navbar>
           </Col>
-
-          <Route exact path='/' render={() => {
-            if (!user.length) return <Col>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
-            if (movies.length === 0) return <div className='main-view' />;
-            return <MoviesList movies={movies} />;
+          <Row>
+            <MoviesList movies={movies} />; 
+          </Row>
+          </Col>
           }} />
 
           <Route path='/register' render={() => {
@@ -132,9 +132,27 @@ class MainView extends React.Component {
             if (!user.length) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
-            return <Col md={8}>
-              <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
-            </Col>
+            return <Col>
+            <Col className='headerCol' md={12}>
+            <Navbar >
+              <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='mr-auto'>
+                  <Nav.Link href='/'>Home</Nav.Link>
+                  <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                  <NavDropdown title='Settings' id='basic-nav-dropdown'>
+                    <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          </Col>
+          <Col md={8}>
+            <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+          </Col>
+        </Col>
           }} />
 
           <Route path='/genre/:name' render={({ match, history }) => {
@@ -142,9 +160,27 @@ class MainView extends React.Component {
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
-            return <Col md={8}>
+            return <Col>
+            <Col className='headerCol' md={12}>
+            <Navbar >
+              <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='mr-auto'>
+                  <Nav.Link href='/'>Home</Nav.Link>
+                  <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                  <NavDropdown title='Settings' id='basic-nav-dropdown'>
+                    <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          </Col>
+          <Col md={8}>
               <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
-            </Col>
+          </Col>
+          </Col>
           }} />
 
           <Route path='/director/:name' render={({ match, history }) => {
@@ -152,9 +188,27 @@ class MainView extends React.Component {
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
-            return <Col md={8}>
-              <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
-            </Col>
+            return <Col>
+              <Col className='headerCol' md={12}>
+                <Navbar >
+                  <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
+                  <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                  <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='mr-auto'>
+                      <Nav.Link href='/'>Home</Nav.Link>
+                      <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                      <NavDropdown title='Settings' id='basic-nav-dropdown'>
+                        <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Navbar>
+             </Col>
+              <Col md={8}>
+               <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+              </Col>
+            </Col> 
           }} />
 
           <Route path='/users/:Username' render={({ history }) => {
@@ -163,9 +217,27 @@ class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className='main-view' />;
             return (
-              <Col md={8}>
+              <Col>
+                <Col className='headerCol' md={12}>
+                <Navbar >
+                  <Navbar.Brand href='/' style={{ color: '#9ba9ff', fontSize: '36px' }}>myFlix</Navbar.Brand>
+                  <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                  <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='mr-auto'>
+                      <Nav.Link href='/'>Home</Nav.Link>
+                      <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                      <NavDropdown title='Settings' id='basic-nav-dropdown'>
+                        <NavDropdown.Item href='#action/'>Support</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { this.onLoggedOut() }}>Log Out</NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Navbar>
+             </Col>          
+             <Col md={8}>
                 <UserView user={user} userData={this.props.userData} movies={movies} onBackClick={() => history.goBack()} />
-              </Col>
+            </Col>
+            </Col>
             )
           }} />
 
