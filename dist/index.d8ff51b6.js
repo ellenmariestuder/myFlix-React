@@ -24807,6 +24807,7 @@ class MainView extends _reactDefault.default.Component {
             this.getAcc(accessToken);
         }
         console.log('component did mount');
+        console.log('component mount user: ' + this.props.user);
     }
     getMovies(token) {
         _axiosDefault.default.get('https://getmyflix.herokuapp.com/movies', {
@@ -24834,10 +24835,8 @@ class MainView extends _reactDefault.default.Component {
     }
     onLoggedIn(authData) {
         console.log(authData);
-        // this.props.setUser(authData.user.Username);
-        this.setState({
-            user: authData.user.Username
-        }); //trying this-- 12/23/21
+        this.props.setUser(authData.user.Username);
+        // this.setState({ user: authData.user.Username }) //trying this-- 12/23/21
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
@@ -24866,7 +24865,6 @@ class MainView extends _reactDefault.default.Component {
         let { movies , user  } = this.props;
         // let { user } = this.state;
         console.log('render, L94 ' + user);
-        console.log(user);
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "/Users/ellenstuder/Desktop/career-foundry/myFlix-React-client/src/components/main-view/main-view.jsx",
@@ -25124,7 +25122,7 @@ class MainView extends _reactDefault.default.Component {
                 }, "Log Out")))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.UserView, {
-                    user: user,
+                    user: this.props.userData,
                     userData: this.props.userData,
                     movies: movies,
                     onBackClick: ()=>history.goBack()

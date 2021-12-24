@@ -28,6 +28,7 @@ class MainView extends React.Component {
       this.getAcc(accessToken);
     }
     console.log('component did mount');
+    console.log('component mount user: ' + this.props.user)
   }
 
   getMovies(token) {
@@ -58,8 +59,8 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    // this.props.setUser(authData.user.Username);
-    this.setState({ user: authData.user.Username }) //trying this-- 12/23/21
+    this.props.setUser(authData.user.Username);
+    // this.setState({ user: authData.user.Username }) //trying this-- 12/23/21
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
@@ -91,7 +92,6 @@ class MainView extends React.Component {
     let { movies, user } = this.props;
     // let { user } = this.state;
     console.log('render, L94 ' + user);
-    console.log(user);
 
     return (
       <Router>
@@ -237,7 +237,7 @@ class MainView extends React.Component {
                   </Navbar>
                 </Col>
                 <Col md={8}>
-                  <UserView user={user} userData={this.props.userData} movies={movies} onBackClick={() => history.goBack()} />
+                  <UserView user={this.props.userData} userData={this.props.userData} movies={movies} onBackClick={() => history.goBack()} />
                 </Col>
               </Col>
             )
